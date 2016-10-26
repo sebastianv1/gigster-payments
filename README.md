@@ -17,7 +17,7 @@ If you don't have already have Node.js installed on your machine, follow the ins
   [Linux](https://docs.mongodb.com/manual/administration/install-on-linux/)
 
   [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-2. Follow the instructions above to install and then run MongoDB on your machine in a terminal.
+2. Then follow the steps below the installation instructions to run MongoDB on your machine in a terminal.
 
 ### Running the project:
 1. Open up a new terminal and `cd` into the root directory of this project.
