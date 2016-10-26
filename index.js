@@ -6,7 +6,7 @@ var env = process.env.NODE_ENV || 'dev';
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-var db_url = 'mongodb://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@ds145315.mlab.com:45315/heroku_zhkjbq0d';
+var db_url = process.env.MONGODB_URI;
 
 var schema = require('./schema');
 
