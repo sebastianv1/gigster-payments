@@ -17,12 +17,13 @@ var stripe = require('stripe')(secrets.stripe_test_key);
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(db_url, function(err) {
 	if (err) throw err;
 	console.log("MongoDB Connection established");
 });
+
 
 app.get('/', function(req, res) {
 	res.sendFile('./index.html');
@@ -66,6 +67,7 @@ app.post('/addUsers', function(req, res) {
 });
 
 app.post('/chargeUsers', function(req, res) {
+
 	var userStream = schema.User.find().stream();
 	var updated_users = [];
 

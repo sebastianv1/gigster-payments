@@ -10,26 +10,60 @@
 
   </head>
   <body ng-app="payments1" ng-controller="PaymentsController as payments">
-    <div>
-      <img src="gigster.png" class="img-responsive center-block" alt="Gigster">
+    <div class="page-header text-center">
+        <h1>Charge Customers</h1>
+    </div>
+    <div class="row">
+        <img src="gigster.png" class="img-responsive center-block" alt="Gigster">
     </div>
 
-    <h3>Enter User Information</h3>
-    <textarea ng-model="payments.users" class="form-control" rows="5"></textarea>
-    <button ng-click="payments.addUsers(payments)" class="btn btn-primary">Submit</button>
+    <br>
+    <div class="row">
+        <div class="container">
+            <div class="jumbotron">
+                <h3>{{payments.enterUserHeader}}</h3>
+                <textarea ng-model="payments.users" class="form-control" rows="5" placeholder="First Last Email Card Amount"></textarea>
+                <br>
+                <button ng-click="payments.addUsers(payments)" class="btn btn-primary">
+                    <span ng-show="payments.addUsersEnabled == 'false'">
+                    <i class="glyphicon glyphicon-refresh spinning"></i>
+                </span>
+                {{payments.addUsersButtonText}}
+                </button>
+            </div>
+        </div>
+    </div>
     
-    <table class="table table-striped">
-    	<tr>
-    		<th ng-repeat="title in payments.userTableHeaders">{{title}}</th>
-    	</tr>
-    	<tr ng-repeat="user in users">
-    		<td>{{user["firstName"]}}</td>
-    		<td>{{user["lastName"]}}</td>
-    		<td>{{user["amount"] | currency}}</td>
-    		<td>{{user["charged"]}}</td>
-    	</tr>
-    </table>
+    <div class="row">
+        <div class="container">
+            <div class="jumbotron">
+                <h3>{{payments.allUsersHeader}}</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-inverse">
+                        	<tr>
+                        		<th ng-repeat="title in payments.userTableHeaders">{{title}}</th>
+                        	</tr>
+                        </thead>
+                        <tbody>
+                        	<tr ng-repeat="user in payments.users_list">
+                        		<td>{{user["firstName"]}}</td>
+                        		<td>{{user["lastName"]}}</td>
+                        		<td>{{user["amount"] | currency}}</td>
+                        		<td>{{user["charged"]}}</td>
+                        	</tr>
+                        </tbody>
+                    </table>
+                </div>
 
-    <button ng-click="payments.chargeAllUsers(payments)" class="btn btn-primary">Charge Users</button>
+                <button ng-click="payments.chargeAllUsers(payments)" class="btn btn-primary">
+                    <span ng-show="payments.chargeUsersEnabled == 'false'">
+                        <i class="glyphicon glyphicon-refresh spinning"></i>
+                    </span>
+                    {{payments.chargeUsersButtonText}}
+                </button>
+            </div>
+        </div>
+    </div>
   </body>
 </html>
