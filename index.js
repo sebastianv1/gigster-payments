@@ -1,19 +1,28 @@
 var express = require('express');
 var app = express();
 
+var env = process.env.NODE_ENV || 'dev';
+
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-var db_url = 'mongodb://localhost:27017/payments';
+var db_url = 'mongodb://' + process.env.DB_USERNAME + ':' + process.env.DB_PASSWORD + '@ds145315.mlab.com:45315/heroku_zhkjbq0d';
+
 var schema = require('./schema');
 
 var async = require('async');
 
-var fs = require('fs');
-var secretsFile = fs.readFileSync("secrets.json");
-var secrets = JSON.parse(secretsFile);
+var stripe = require('stripe')(process.env.STRIPE_TEST_KEY);
 
-var stripe = require('stripe')(secrets.stripe_test_key);
+if (env == 'dev') {
+	var db_url = 'mongodb://localhost:27017/payments';
+
+	var fs = require('fs');
+	var secretsFile = fs.readFileSync("secrets.json");
+	var secrets = JSON.parse(secretsFile);
+	var stripe = require('stripe')(secrets.stripe_test_key);
+}
+
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
