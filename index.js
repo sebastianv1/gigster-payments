@@ -15,7 +15,7 @@ var async = require('async');
 var stripe = require('stripe')(process.env.STRIPE_TEST_KEY);
 
 if (env == 'dev') {
-	var db_url = 'mongodb://localhost:27017/payments';
+	var db_url = "mongodb://localhost:27017/payments";
 
 	var fs = require('fs');
 	var secretsFile = fs.readFileSync("secrets.json");
