@@ -112,7 +112,7 @@ app.get('/data', function(req, res) {
 	});
 });
 
-var PORT_NUM = 60;
+var PORT_NUM = process.env.PORT;
 if (env == "dev") {
 	PORT_NUM = 3000;
 }
