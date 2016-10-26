@@ -112,8 +112,10 @@ app.get('/data', function(req, res) {
 	});
 });
 
-
-var PORT_NUM = 3000;
+var PORT_NUM = 60;
+if (env == "dev") {
+	PORT_NUM = 3000;
+}
 app.listen(PORT_NUM);
 console.log("Listening on port " + PORT_NUM);
 
