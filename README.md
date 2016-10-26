@@ -4,10 +4,10 @@ This is a sample web application using the MEAN (MongoDB, Express, Angular, Node
 Public URL access to sample app: https://payments-form.herokuapp.com/
 
 ## Run Locally:
-In order to run this locally, you will need to install Node.js and MongoDB.
+In order to run this locally, you will need to the latest version of Node.js and MongoDB.
 
 ### Node.js:
-If you don't have already have Node.js installed on your machine, follow the instructions [here](https://nodejs.org/en/download/) to get set up.
+If you don't already have the latest version of Node.js installed on your machine, follow the instructions [here](https://nodejs.org/en/download/) to get set up.
 
 ### MongoDB:
 1. Next, install MongoDB from one of the links below depending on which OS you're runing.
@@ -17,7 +17,7 @@ If you don't have already have Node.js installed on your machine, follow the ins
   [Linux](https://docs.mongodb.com/manual/administration/install-on-linux/)
 
   [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
-2. Then follow the steps below the installation instructions to run MongoDB on your machine in a terminal.
+2. Then follow the steps below the installation instructions to run MongoDB on your machine in a new terminal shell.
 
 ### Running the project:
 1. Open up a new terminal and `cd` into the root directory of this project.
