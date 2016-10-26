@@ -22,12 +22,13 @@
         <div class="container">
             <div class="jumbotron">
                 <h3>{{payments.enterUserHeader}}</h3>
-                <textarea ng-model="payments.users" class="form-control" rows="5"></textarea>
+                <textarea ng-model="payments.users" class="form-control" rows="5" placeholder="First Last Email Card Amount"></textarea>
+                <br>
                 <button ng-click="payments.addUsers(payments)" class="btn btn-primary">
-                    <span ng-show="addUsersEnabled == 'false'">
+                    <span ng-show="payments.addUsersEnabled == 'false'">
                     <i class="glyphicon glyphicon-refresh spinning"></i>
                 </span>
-                {{addUsersButtonText}}
+                {{payments.addUsersButtonText}}
                 </button>
             </div>
         </div>
@@ -45,7 +46,7 @@
                         	</tr>
                         </thead>
                         <tbody>
-                        	<tr ng-repeat="user in users">
+                        	<tr ng-repeat="user in payments.users_list">
                         		<td>{{user["firstName"]}}</td>
                         		<td>{{user["lastName"]}}</td>
                         		<td>{{user["amount"] | currency}}</td>
@@ -56,10 +57,10 @@
                 </div>
 
                 <button ng-click="payments.chargeAllUsers(payments)" class="btn btn-primary">
-                    <span ng-show="chargeUsersEnabled == 'false'">
+                    <span ng-show="payments.chargeUsersEnabled == 'false'">
                         <i class="glyphicon glyphicon-refresh spinning"></i>
                     </span>
-                    {{chargeUsersButtonText}}
+                    {{payments.chargeUsersButtonText}}
                 </button>
             </div>
         </div>

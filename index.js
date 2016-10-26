@@ -30,7 +30,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/addUsers', function(req, res) {
-
 	var users = req.body.users.split("\n");
 	var added_users = [];
 
