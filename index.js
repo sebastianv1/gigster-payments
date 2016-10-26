@@ -23,7 +23,6 @@ if (env == 'dev') {
 	var stripe = require('stripe')(secrets.stripe_test_key);
 }
 
-
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,7 +31,6 @@ mongoose.connect(db_url, function(err) {
 	if (err) throw err;
 	console.log("MongoDB Connection established");
 });
-
 
 app.get('/', function(req, res) {
 	res.sendFile('./index.html');
@@ -76,10 +74,8 @@ app.post('/addUsers', function(req, res) {
 });
 
 app.post('/chargeUsers', function(req, res) {
-
-	var userStream = schema.User.find().stream();
 	var updated_users = [];
-
+	
 	schema.User.find({}, function(err, users) {
 		async.eachSeries(users, function(user, callback) {
 			stripe.charges.create({
@@ -112,10 +108,7 @@ app.get('/data', function(req, res) {
 	});
 });
 
-var PORT_NUM = process.env.PORT;
-if (env == "dev") {
-	PORT_NUM = 3000;
-}
+var PORT_NUM = process.env.PORT || 3000
 app.listen(PORT_NUM);
 console.log("Listening on port " + PORT_NUM);
 

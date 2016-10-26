@@ -13,6 +13,26 @@ app.controller("PaymentsController", function PaymentsController($scope, $http) 
 	// Set the scope
 	var self = this;
 
+	var startLoadingAddUsers = function() {
+		self.addUsersButtonText = "Adding...";
+		self.addUsersEnabled = "false";
+	}
+
+	var stopLoadingAddUsers = function() {
+		self.addUsersButtonText = "Add Users";
+		self.addUsersEnabled = "true";
+	}
+
+	var startLoadingChargeUsers = function() {
+		self.chargeUsersButtonText = "Charging...";
+		self.chargeUsersEnabled = "false";
+	}
+
+	var stopLoadingChargeUsers = function() {
+		self.chargeUsersButtonText = "Charge Users";
+		self.chargeUsersEnabled = "true";
+	}
+
 	var insertUsers = function(users) {
 		for (u of users) {
 			self.users_list.push(JSON.parse(u));
@@ -31,30 +51,24 @@ app.controller("PaymentsController", function PaymentsController($scope, $http) 
 	}
 
 	this.addUsers = function(body) {
-		self.addUsersButtonText = "Adding...";
-		self.addUsersEnabled = "false";
+		startLoadingAddUsers();
 		$http.post('/addUsers', body)
 		.success(function(data) {
-			self.addUsersButtonText = "Add Users";
-			self.addUsersEnabled = "true";
+			stopLoadingAddUsers();
 			insertUsers(data);
 			self.users = null;
 		})
 		.error(function(data) {
-			self.addUsersButtonText = "Add Users";
-			self.addUsersEnabled = "true";
+			stopLoadingAddUsers();
 			alert("Failed to add users");
 		});
 	};
 
 	this.chargeAllUsers = function(body) {
-		self.chargeUsersButtonText = "Charging...";
-		self.chargeUsersEnabled = "false";
+		startLoadingChargeUsers();
 		$http.post('/chargeUsers', body)
 		.success(function(data) {
-			self.chargeUsersButtonText = "Charge Users";
-			self.chargeUsersEnabled = "true";
-
+			stopLoadingChargeUsers();
 			if (data == "FAILED") {
 				alert("Failed to charge users");
 			} else {
@@ -68,8 +82,7 @@ app.controller("PaymentsController", function PaymentsController($scope, $http) 
 			}
 		})
 		.error(function(data) {
-			self.chargeUsersButtonText = "Charge Users";
-			self.chargeUsersEnabled = "true";
+			stopLoadingChargeUsers();
 			alert("Failed to charge users");
 		});
 	}
